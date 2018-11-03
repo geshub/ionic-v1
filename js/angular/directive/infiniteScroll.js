@@ -96,7 +96,8 @@ IonicModule
           throw 'Infinite scroll must be used inside a scrollable div';
         }
         //bind to native scroll events
-        infiniteScrollCtrl.scrollEl.addEventListener('scroll', infiniteScrollCtrl.checkBounds);
+          // enable passive event listeners
+        infiniteScrollCtrl.scrollEl.addEventListener('scroll', infiniteScrollCtrl.checkBounds, {passive: true, capture: false});
       }
 
       // Optionally check bounds on start after scrollView is fully rendered

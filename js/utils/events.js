@@ -48,6 +48,11 @@
    */
   ionic.EventController = {
     VIRTUALIZED_EVENTS: ['tap', 'swipe', 'swiperight', 'swipeleft', 'drag', 'hold', 'release'],
+    supportedPassiveTypes: [
+          'scroll', 'wheel',
+          'touchstart', 'touchmove', 'touchenter', 'touchend', 'touchleave',
+          'mouseout', 'mouseleave', 'mouseup', 'mousedown', 'mousemove', 'mouseenter', 'mousewheel', 'mouseover'
+      ],
 
     /**
      * @ngdoc method
@@ -94,7 +99,13 @@
       }
 
       // Otherwise bind a normal event
-      e.addEventListener(type, callback);
+        // enable passive event listeners
+        for(var i = 0, j = this.supportedPassiveTypes.length; i < j; i++) {
+            if(type == this.supportedPassiveTypes[i]) {
+                e.addEventListener(type, callback);
+            }
+        }
+
     },
 
     /**

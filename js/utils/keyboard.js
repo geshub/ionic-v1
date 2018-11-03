@@ -497,9 +497,7 @@ function keyboardWaitForResize(callback, isOpening) {
 
   // want to fail relatively quickly on modern android devices, since it's much
   // more likely we just have a bad keyboard height
-  if (ionic.Platform.isAndroid() && ionic.Platform.version() < 4.4) {
-    maxCount = 30;
-  } else if (ionic.Platform.isAndroid()) {
+  if (ionic.Platform.isAndroid()) {
     maxCount = 10;
   } else {
     maxCount = 1;
